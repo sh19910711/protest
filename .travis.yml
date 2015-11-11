@@ -1,0 +1,20 @@
+language: bash
+
+sudo: required
+
+install:
+- sudo apt-get install software-properties-common
+- sudo apt-add-repository -y ppa:swi-prolog/stable
+- sudo apt-get update
+- sudo apt-get install swi-prolog
+
+- pushd $(mktemp -d)
+- wget http://ftp.gnu.org/gnu/gprolog/gprolog-1.4.4.tar.gz
+- tar zxf gprolog-1.4.4.tar.gz
+- cd gprolog-1.4.4/src
+- ./configure && make -j4 && sudo make install
+- popd
+
+script:
+- swipl -l test/example_test.pl -t run_tests
+- gprolog --consult-file test/example_test.pl --entry-goal run_tests
