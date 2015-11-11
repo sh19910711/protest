@@ -16,5 +16,8 @@ install:
 - popd
 
 script:
-- swipl -l test/example_test.pl -t run_tests
-- gprolog --consult-file test/example_test.pl --entry-goal run_tests
+- |
+  for testcase in test/*_test.pl; do
+    swipl -l ${testcase} -t run_tests;
+    gprolog --consult-file ${testcase} --entry-goal run_tests;
+  done
