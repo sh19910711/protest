@@ -24,3 +24,7 @@ $ gprolog --consult-file number_test.pl --entry-goal run_tests
 ### API
 
 TBD.
+
+## License
+
+The **protest.pl** is licensed under the MIT-License, see details in the LICENSE.txt.
