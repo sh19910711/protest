@@ -17,7 +17,7 @@ test_not_equal :-
   assert_not_equal(1, 2).
 ```
 
-#### GNU Prolog (>= `ver. 1.4.x`)
+#### Example: GNU Prolog (>= `ver. 1.4.x`)
 
 ```text
 $ gprolog --consult-file number_test.pl --entry-goal run_tests
@@ -34,7 +34,7 @@ Passed Tests.
 Passed: 2, Failed: 0, Total Assertions: 2
 ```
 
-#### SWI-Prolog
+#### Example: SWI-Prolog
 
 ```text
 $ swipl -l test/example_test.pl -t run_tests
@@ -56,6 +56,19 @@ test_foo: passed
 ==
 Passed Tests.
 Passed: 7, Failed: 0, Total Assertions: 5
+```
+
+#### Example: SICStus
+
+```text
+-bash-4.2$ sicstus -l test/readme_test.pl --goal run_tests.
+SICStus 4.3.2 (i386-solaris-5.10): Fri May  8 13:52:56 CEST 2015
+Licensed to ***
+test_equal: passed
+test_not_equal: passed
+==
+Passed Tests.
+Passed: 2, Failed: 0, Total Assertions: 2
 ```
 
 ### API
