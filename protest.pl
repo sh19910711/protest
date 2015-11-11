@@ -19,17 +19,16 @@ test_result_(Msg) :-
   count_(assert, Z),
   format('Passed: ~d, Failed: ~d, Total Assertions: ~d', [X, Y, Z]), nl.
 
-testcase_(Codes, TestCase) :- append("test_", TestCase, Codes), !.
-testcase_(_, TestCase) :- append("", TestCase, "").
+testcase_(Pred, TestCase) :- atom_concat('test_', TestCase, Pred), !.
+testcase_(_, TestCase) :- atom_concat('', TestCase, '').
 testcases_(TestCases) :-
   findall(Pred, current_predicate(Pred/0), Preds),
   filter_tests_(Preds, TestCases).
 
 filter_tests_([], Res) :- append([], Res, []).
 filter_tests_([Pred | Preds], Res) :-
-  atom_codes(Pred, L),
-  testcase_(L, TestCase),
-  if_(TestCase \== "", append([], [Pred], Res0)),
+  testcase_(Pred, TestCase),
+  if_(TestCase \== '', append([], [Pred], Res0)),
   filter_tests_(Preds, Res1),
   append(Res0, Res1, Res).
 
