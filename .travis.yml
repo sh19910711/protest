@@ -16,8 +16,10 @@ install:
 - popd
 
 script:
+- pushd test
 - |
-  for testcase in test/*_test.pl; do
+  for testcase in *_test.pl; do
     swipl -l ${testcase} -t run_tests;
     gprolog --consult-file ${testcase} --entry-goal run_tests;
   done
+- popd
